@@ -9,42 +9,37 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Random;
 
-public class DataGenerator {
+public class DataGenerator { // утилитный класс
     private DataGenerator() {
     }
 
     public static String generateDate(int shift) {
-        // TODO: добавить логику для объявления переменной date и задания её значения, для генерации строки с датой
-        // Вы можете использовать класс LocalDate и его методы для получения и форматирования даты
-        return date;
+         return LocalDate.now().plusDays(shift).format(DateTimeFormatter.ofPattern("dd.MM.yyyy")); //shift is a static method of the ArrayUtils class that shifts the elements in an array in the clockwise or anti-clockwise direction by an offset.
     }
 
-    public static String generateCity(String locale) {
-        // TODO: добавить логику для объявления переменной city и задания её значения, генерацию можно выполнить
-        // с помощью Faker, либо используя массив валидных городов и класс Random
-        return city;
+    public static String generateCity(String locale) {// статичные методы принадлежат 1 классу, нет смысла с ними прописывать доп.экз.классов
+var cities = new String[] {"Москва", "Ставрополь", "Тверь", "Владивосток"};// задаем массив самостоятельно
+        return cities [new Random().nextInt(cities.length)]; //возвращает в рандомном порядке любой город из заданного массива/ Этот метод возвращает случайное целое число
     }
 
-    public static String generateName(String locale) {
-        // TODO: добавить логику для объявления переменной name и задания её значения, для генерации можно
-        // использовать Faker
-        return name;
+    public static String generateName(String locale) { // Класс Java java.util.Locale позволяет учесть особенности региональных представлений алфавита, символов, чисел и дат.
+       var faker = new Faker (new Locale(locale));
+        return faker.name().lastName() + " " + faker.name().firstName();
     }
 
     public static String generatePhone(String locale) {
-        // TODO: добавить логику для объявления переменной phone и задания её значения, для генерации можно
-        // использовать Faker
-        return phone;
+       var faker = new Faker (new Locale (locale));
+
+        return faker.phoneNumber().phoneNumber(); // именно phoneNumber из faker
     }
 
-    public static class Registration {
+
+    public static class Registration { // класс
         private Registration() {
         }
 
         public static UserInfo generateUser(String locale) {
-            // TODO: добавить логику для создания пользователя user с использованием методов generateCity(locale),
-            // generateName(locale), generatePhone(locale)
-            return user;
+            return new UserInfo (generateCity(locale), generateName(locale), generatePhone(locale));
         }
     }
 
