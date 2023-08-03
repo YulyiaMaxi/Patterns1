@@ -49,7 +49,7 @@ class DeliveryTest {
         $(".button").click();
         $("[data-test-id = replan-notification] .notification__content")
                 .shouldBe(visible, Duration.ofSeconds(15))
-                .shouldHave(exactText("У вас уже запланирована встреча на другу дату. Перепланировать? Перепланировать"));
+                .shouldHave(exactText("У вас уже запланирована встреча на другую дату. Перепланировать? Перепланировать"));
         $("[data-test-id = replan-notification] button").click();
         $("[data-test-id = success-notification] .notification__content")
                 .shouldBe(visible, Duration.ofSeconds(15))
