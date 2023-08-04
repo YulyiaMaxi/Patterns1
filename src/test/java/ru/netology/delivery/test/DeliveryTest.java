@@ -27,18 +27,18 @@ class DeliveryTest {
     @DisplayName("Should successful plan and replan meeting")
     void shouldSuccessfulPlanAndReplanMeeting() {
         //var validUser = DataGenerator.Registration.generateUser("ru"); // методы утилитного класса вызываются по имени класса. Обращаемся к классу, затем к методу
-        var daysToAddForFirstMeeting = 4;
-        var firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
-        var daysToAddForSecondMeeting = 7;
-        var secondMeetingDate = DataGenerator.generateDate(daysToAddForSecondMeeting);
+        int daysToAddForFirstMeeting = 4;
+        String firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
+        int daysToAddForSecondMeeting = 7;
+        String secondMeetingDate = DataGenerator.generateDate(daysToAddForSecondMeeting);
         $("[data-test-id = city] input").setValue(DataGenerator.generateCity("ru"));// передаем сюда локаль, то есть в методе прописано string locale. а в тесте уже пишем, какая именно
+        $("[data-test-id = date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME, Keys.DELETE));
+        $("[data-test-id = date] input").setValue(firstMeetingDate);
         $("[data-test-id = name] input").setValue(DataGenerator.generateName("ru"));
         $("[data-test-id = phone] input").setValue(DataGenerator.generatePhone("ru"));
         ////$("[data-test-id = city] input").setValue(validUser.getCity());
         //$("[data-test-id = name] input").setValue(validUser.getName());
         //$("[data-test-id = phone] input").setValue(validUser.getPhone());
-        $("[data-test-id = date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME, Keys.DELETE));
-        $("[data-test-id = date] input").setValue(firstMeetingDate);
         $("[data-test-id = agreement]").click();
         $(".button").click();
         $("[data-test-id = success-notification] .notification__content")
